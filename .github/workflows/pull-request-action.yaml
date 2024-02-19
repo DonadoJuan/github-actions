@@ -22,7 +22,7 @@ jobs:
                 const botComment = comments.find(comment => {
                   return comment.user.type === 'Bot' && comment.body.includes('Terraform Cloud Plan Output')
                 })
-                const output = `#### Terraform Cloud Plan Output
+                const output = `#### Terraform Cloud Plan Outputtt
                   \`\`\`\n
                   Plan: [PLAN DESCRIPTION] to add, [ADD] to change, [DESTROY] to destroy.
                   \`\`\`
