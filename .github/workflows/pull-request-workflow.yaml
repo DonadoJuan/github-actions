@@ -16,19 +16,19 @@ jobs:
             uses: hashicorp/setup-terraform@v3
             with:
               cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-              terraform_version: '1.7.2'
+              terraform_version: '1.7.3'
           
           - name: Terraform Format
             id: fmt
-            run: terraform -chdir=/dev fmt  -check -recursive
+            run: terraform -chdir=dev fmt  -check -recursive
 
           - name: Terraform Init
             id: init
-            run: terraform -chdir=/dev init
+            run: terraform -chdir=dev init
 
           - name: Terraform Plan
             id: plan
-            run: terraform -chdir=/dev plan -out workspace.plan
+            run: terraform -chdir=dev plan -out workspace.plan
           
           - name: Post Plan
             uses: robburger/terraform-pr-commenter@v1
