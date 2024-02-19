@@ -24,7 +24,7 @@ jobs:
 
           - name: Terraform Init
             id: init
-            run: terraform -chdir=/dev init -chdir=/dev
+            run: terraform -chdir=/dev init
 
           - name: Terraform Plan
             id: plan
