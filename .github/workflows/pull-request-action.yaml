@@ -16,6 +16,7 @@ jobs:
           ## REQUIRED: Workflow permissions: `Read and write permissions`
           - uses: actions/github-script@v6
             with:
+              github-token: ${{ secrets.GITHUB_TOKEN }}
               script: |
                 // 1. Retrieve existing bot comments for the PR
                 const { data: comments } = await github.rest.issues.listComments({
