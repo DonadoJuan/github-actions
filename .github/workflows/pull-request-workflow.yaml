@@ -20,15 +20,15 @@ jobs:
           
           - name: Terraform Format
             id: fmt
-            run: terraform fmt -chdir=/dev -check -recursive
+            run: terraform -chdir=/dev fmt  -check -recursive
 
           - name: Terraform Init
             id: init
-            run: terraform init -chdir=/dev
+            run: terraform -chdir=/dev init -chdir=/dev
 
           - name: Terraform Plan
             id: plan
-            run: terraform plan -chdir=/dev -out workspace.plan
+            run: terraform -chdir=/dev plan -out workspace.plan
           
           - name: Post Plan
             uses: robburger/terraform-pr-commenter@v1
