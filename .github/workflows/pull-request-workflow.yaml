@@ -40,11 +40,7 @@ jobs:
 
           - name: Terraform get workspace
             id: shows
-            run: terraform -chdir=dev workspace show
-          
-          - name: Terraform get workspace
-            id: echo
-            run: echo $TF_WORKSPACE
+            run: terraform -chdir=dev workspace show >> $TF_WORKSPACE
 
           - name: Terraform Plan
             id: plan
