@@ -38,6 +38,14 @@ jobs:
             id: validate
             run: terraform validate -no-color
 
+          - name: Terraform get workspace
+            id: shows
+            run: terraform -chdir=dev workspace show
+          
+          - name: Terraform get workspace
+            id: echo
+            run: echo $TF_WORKSPACE
+
           - name: Terraform Plan
             id: plan
             run: terraform -chdir=dev plan
@@ -54,7 +62,3 @@ jobs:
               commenter_type: plan
               commenter_input: ${{ format('{0}{1}', steps.plan.outputs.stdout, steps.plan.outputs.stderr) }}
               commenter_exitcode: ${{ steps.plan.outputs.exitcode }}
-          
-          - name: Terraform Apply
-            id: apply
-            run: terraform -chdir=dev apply -auto-approve
