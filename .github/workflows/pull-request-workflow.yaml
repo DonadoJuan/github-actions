@@ -38,7 +38,7 @@ jobs:
             run: terraform -chdir=dev plan -out workspace.plan
           
           - name: Post Plan
-            uses: robburger/terraform-pr-commenter@v1
+            uses: MaxKelsen/terraform-pr-commenter@b26c5af94b96ac4a6a32750b6fdc426ef2d9cd4c
             env:
               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             with:
