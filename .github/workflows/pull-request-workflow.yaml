@@ -44,8 +44,8 @@ jobs:
           
           - name: Adding markdown
             env:
-              GITHUB_STEP_SUMMARY: ${{ steps.plan.outputs.stdout }}
-            run: echo '### Hello world! 🚀'
+              MY_VAR: ${{ steps.plan.outputs.stdout }}
+            run: echo $MY_VAR >> $GITHUB_STEP_SUMMARY
           
           - uses: actions/github-script@v6
             env:
