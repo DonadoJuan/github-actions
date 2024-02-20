@@ -9,6 +9,8 @@ jobs:
   dev:
       permissions:
         id-token: write
+        contents: read
+        pull-requests: write
       runs-on: ubuntu-latest
       env:
         ARM_CLIENT_ID: "${{ secrets.AZURE_CLIENT_ID }}"
