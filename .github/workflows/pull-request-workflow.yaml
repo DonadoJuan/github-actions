@@ -43,7 +43,7 @@ jobs:
 
           - name: Terraform get workspace
             id: shows
-            run: echo "TF_WORKSPACE=$(terraform workspace show)" >> "$GITHUB_OUTPUT"
+            run: echo "TF_WORKSPACE=$(terraform workspace show)" >> $GITHUB_ENV
 
           - name: Terraform Plan
             id: plan
@@ -52,7 +52,6 @@ jobs:
           - uses: GetTerminus/terraform-pr-commenter@v3.0.3
             env:
               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              TF_WORKSPACE: ${{ steps.shows.outputs.TF_WORKSPACE }}
             with:
               commenter_type: plan
               commenter_input: ${{ format('{0}{1}', steps.plan.outputs.stdout, steps.plan.outputs.stderr) }}
