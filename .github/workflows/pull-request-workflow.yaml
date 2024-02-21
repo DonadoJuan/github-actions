@@ -12,6 +12,9 @@ jobs:
         contents: read
         pull-requests: write
       runs-on: ubuntu-latest
+      defaults:
+        run:
+          working-directory: ./dev
       env:
         ARM_CLIENT_ID: "${{ secrets.AZURE_CLIENT_ID }}"
         ARM_SUBSCRIPTION_ID: "${{ secrets.AZURE_SUBSCRIPTION_ID }}"
@@ -28,11 +31,11 @@ jobs:
           
           - name: Terraform Format
             id: fmt
-            run: terraform -chdir=dev fmt  -check -recursive
+            run: terraform fmt -check -recursive
 
           - name: Terraform Init
             id: init
-            run: terraform -chdir=dev init
+            run: terraform init
 
           - name: Terraform Validate
             id: validate
@@ -40,13 +43,13 @@ jobs:
 
           - name: Terraform get workspace
             id: shows
-            run: echo "TF_WORKSPACE=$(terraform -chdir=dev workspace show)" >> "$GITHUB_OUTPUT"
+            run: echo "TF_WORKSPACE=$(terraform workspace show)" >> "$GITHUB_OUTPUT"
 
           - name: Terraform Plan
             id: plan
-            run: terraform -chdir=dev plan
+            run: terraform plan
           
-          - uses: janhartje/terraform-pr-commenter@v2.2
+          - uses: GetTerminus/terraform-pr-commenter@v3.0.3
             env:
               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               TF_WORKSPACE: ${{ steps.shows.outputs.TF_WORKSPACE }}
