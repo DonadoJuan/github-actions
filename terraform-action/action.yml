@@ -9,40 +9,40 @@ inputs:
     required: true
 runs:
   using: "composite"
-      steps:             
-        - name: 'Checkout'
-          uses: actions/checkout@v4
+  steps:             
+    - name: 'Checkout'
+      uses: actions/checkout@v4
 
-        - name: 'Setup Terraform'
-          uses: hashicorp/setup-terraform@v3
-          with:
-            cli_config_credentials_token: ${{ inputs.tf_api_token }}
-            terraform_version: '1.7.3'
-        
-        - name: Terraform Format
-          id: fmt
-          run: terraform fmt -check -recursive
+    - name: 'Setup Terraform'
+      uses: hashicorp/setup-terraform@v3
+      with:
+        cli_config_credentials_token: ${{ inputs.tf_api_token }}
+        terraform_version: '1.7.3'
+    
+    - name: Terraform Format
+      id: fmt
+      run: terraform fmt -check -recursive
 
-        - name: Terraform Init
-          id: init
-          run: terraform init
+    - name: Terraform Init
+      id: init
+      run: terraform init
 
-        - name: Terraform Validate
-          id: validate
-          run: terraform validate -no-color
+    - name: Terraform Validate
+      id: validate
+      run: terraform validate -no-color
 
-        - name: Terraform get workspace
-          id: shows
-          run: echo "TF_WORKSPACE=$(terraform workspace show)" >> $GITHUB_ENV
+    - name: Terraform get workspace
+      id: shows
+      run: echo "TF_WORKSPACE=$(terraform workspace show)" >> $GITHUB_ENV
 
-        - name: Terraform Plan
-          id: plan
-          run: terraform plan
-        
-        - uses: GetTerminus/terraform-pr-commenter@v3.0.3
-          env:
-            GITHUB_TOKEN: ${{ inputs.github_token }}
-          with:
-            commenter_type: plan
-            commenter_input: ${{ format('{0}{1}', steps.plan.outputs.stdout, steps.plan.outputs.stderr) }}
-            commenter_exitcode: ${{ steps.plan.outputs.exitcode }}
+    - name: Terraform Plan
+      id: plan
+      run: terraform plan
+    
+    - uses: GetTerminus/terraform-pr-commenter@v3.0.3
+      env:
+        GITHUB_TOKEN: ${{ inputs.github_token }}
+      with:
+        commenter_type: plan
+        commenter_input: ${{ format('{0}{1}', steps.plan.outputs.stdout, steps.plan.outputs.stderr) }}
+        commenter_exitcode: ${{ steps.plan.outputs.exitcode }}
