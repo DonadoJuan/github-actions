@@ -22,22 +22,27 @@ runs:
     - name: Terraform Format
       id: fmt
       run: terraform fmt -check -recursive
+      shell: bash
 
     - name: Terraform Init
       id: init
       run: terraform init
+      shell: bash
 
     - name: Terraform Validate
       id: validate
       run: terraform validate -no-color
+      shell: bash
 
     - name: Terraform get workspace
       id: shows
       run: echo "TF_WORKSPACE=$(terraform workspace show)" >> $GITHUB_ENV
+      shell: bash
 
     - name: Terraform Plan
       id: plan
       run: terraform plan
+      shell: bash
     
     - uses: GetTerminus/terraform-pr-commenter@v3.0.3
       env:
