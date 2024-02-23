@@ -86,7 +86,7 @@ runs:
         GITHUB_TOKEN: ${{ inputs.github_token }}
       with:
         commenter_type: plan
-        commenter_plan_path: tf_plan.txt
+        commenter_plan_path: ./dev/tf_plan.txt
         commenter_exitcode: ${{ steps.plan.outputs.exitcode }}
     
     - name: Terraform Apply
