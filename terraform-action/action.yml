@@ -75,7 +75,7 @@ runs:
 
     - name: Terraform Plan
       id: plan
-      run: terraform plan -input false -out workspace.plan |& tee tf_plan.txt
+      run: terraform plan -input=false -out=workspace.plan |& tee tf_plan.txt
       shell: bash
       working-directory: ./dev
     
