@@ -57,21 +57,21 @@ runs:
       shell: bash
       working-directory: ./dev
 
-    - name: Terraform Validate
-      id: validate
-      run: terraform validate -no-color
-      shell: bash
-      working-directory: ./dev
+    # - name: Terraform Validate
+    #   id: validate
+    #   run: terraform validate -no-color
+    #   shell: bash
+    #   working-directory: ./dev
 
-    - name: Post TF Validate Comment
-      if: ${{ !cancelled() && github.event_name == 'pull_request' && (steps.validate.outcome == 'success' || steps.validate.outcome == 'failure') }}
-      uses: GetTerminus/terraform-pr-commenter@v3
-      env:
-        GITHUB_TOKEN: ${{ inputs.github_token }}
-      with:
-        commenter_type: validate
-        commenter_input: ${{ format('{0}{1}', steps.validate.outputs.stdout, steps.validate.outputs.stderr) }}
-        commenter_exitcode: ${{ steps.validate.outputs.exitcode }}
+    # - name: Post TF Validate Comment
+    #   if: ${{ !cancelled() && github.event_name == 'pull_request' && (steps.validate.outcome == 'success' || steps.validate.outcome == 'failure') }}
+    #   uses: GetTerminus/terraform-pr-commenter@v3
+    #   env:
+    #     GITHUB_TOKEN: ${{ inputs.github_token }}
+    #   with:
+    #     commenter_type: validate
+    #     commenter_input: ${{ format('{0}{1}', steps.validate.outputs.stdout, steps.validate.outputs.stderr) }}
+    #     commenter_exitcode: ${{ steps.validate.outputs.exitcode }}
 
     - name: Terraform Plan
       id: plan
