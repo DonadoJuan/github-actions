@@ -12,6 +12,11 @@ runs:
   steps:             
     - name: 'Checkout'
       uses: actions/checkout@v4
+    
+    - name: Change working directory
+      id: fmt
+      run: terraform fmt -check -recursive
+      shell: bash
 
     - name: 'Setup Terraform'
       uses: hashicorp/setup-terraform@v3
@@ -23,26 +28,31 @@ runs:
       id: fmt
       run: terraform fmt -check -recursive
       shell: bash
+      working-directory: ./dev
 
     - name: Terraform Init
       id: init
       run: terraform init
       shell: bash
+      working-directory: ./dev
 
     - name: Terraform Validate
       id: validate
       run: terraform validate -no-color
       shell: bash
+      working-directory: ./dev
 
     - name: Terraform get workspace
       id: shows
       run: echo "TF_WORKSPACE=$(terraform workspace show)" >> $GITHUB_ENV
       shell: bash
+      working-directory: ./dev
 
     - name: Terraform Plan
       id: plan
       run: terraform plan
       shell: bash
+      working-directory: ./dev
     
     - uses: GetTerminus/terraform-pr-commenter@v3.0.3
       env:
