@@ -1,0 +1,11 @@
+name: "Push trigger"
+
+on:
+  push:
+    branches : feature/*
+
+jobs:
+  pr-trigger:
+    runs-on: ubuntu-latest
+    steps:
+        - run: echo "Push feature trigger run"
