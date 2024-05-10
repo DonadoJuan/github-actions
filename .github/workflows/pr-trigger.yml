@@ -1,0 +1,11 @@
+name: "PR trigger"
+
+on:
+  pull_request:
+    branches : main
+
+jobs:
+  pr-trigger:
+    runs-on: ubuntu-latest
+    steps:
+        - run: echo "PR main trigger run"
