@@ -14,7 +14,7 @@ jobs:
             echo "${{github.sha}}" > foo.txt
             git config user.name "github-actions[bot]"
             git config user.email "test@test.com"
-            git config user.password ${{ env.CUSTOM_TOKEN }}
+            git config user.password ""invalid_password"
             git add foo.txt
             git commit -m "foo test commit"
             git push origin "${{ github.ref }}"
