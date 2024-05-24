@@ -9,12 +9,12 @@ jobs:
 
       - name: test
         env:
-            CUSTOM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            CUSTOM_TOKEN: ${{ secrets.CUSTOM_TOKEN }}
         run: |
             echo "${{github.sha}}" > foo.txt
             git config user.name "github-actions[bot]"
             git config user.email "test@test.com"
-            git config user.password "invalid_password"
+            git config user.password $CUSTOM_TOKEN
             git add foo.txt
             git commit -m "foo test commit"
             git push origin "${{ github.ref }}"
