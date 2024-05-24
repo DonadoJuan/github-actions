@@ -13,9 +13,9 @@ jobs:
       - name: test
         run: |
             echo "${{github.sha}}" > foo.txt
-            git remote set-url origin "https://DonadoJuan:${{ secrets.CUSTOM_TOKEN }}@github.com/${{ github.repository }}.git"
             git config user.name "github-actions[bot]"
             git config user.email "test@test.com"
+            git config user.password "${{ secrets.CUSTOM_TOKEN }}"
             git add foo.txt
             git commit -m "foo test commit"
             git push origin "${{github.ref}}"
