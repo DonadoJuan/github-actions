@@ -6,7 +6,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        # with:
+        with:
+            persist-credentials: false
         #     token: ${{ secrets.CUSTOM_TOKEN }}
 
       - name: test
