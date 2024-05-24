@@ -17,4 +17,4 @@ jobs:
             git config user.password "${{ secrets.CUSTOM_TOKEN }}"
             git add foo.txt
             git commit -m "foo test commit"
-            git push origin "${{ github.ref }}"
+            git push https://${{ secrets.CUSTOM_TOKEN }}@github.com/DonadoJuan/github-actions.git
