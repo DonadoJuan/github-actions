@@ -12,7 +12,7 @@ jobs:
       - name: test
         run: |
             echo "${{github.sha}}" > foo.txt
-            git remote set-url origin "https://${{ secrets.CUSTOM_TOKEN }}@github.com/${{ github.repository }}.git"
+            git remote set-url origin "https://DonadoJuan:${{ secrets.CUSTOM_TOKEN }}@github.com/${{ github.repository }}.git"
             git config user.name "github-actions[bot]"
             git config user.email "test@test.com"
             git add foo.txt
