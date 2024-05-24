@@ -12,4 +12,4 @@ jobs:
             git config user.email "test@test.com"
             git add foo.txt
             git commit -m "foo test commit"
-            git pusdh origin "${{ github.ref }}"
+            git push origin "${{ github.ref }}"
