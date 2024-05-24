@@ -3,7 +3,7 @@ run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [workflow_dispatch]
 jobs:
   Explore-GitHub-Actions:
-    runs-on: [Test-Batumi-Runner]
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - run: |
