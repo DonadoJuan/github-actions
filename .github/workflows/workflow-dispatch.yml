@@ -3,7 +3,8 @@ run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [workflow_dispatch]
 jobs:
   Explore-GitHub-Actions:
-    runs-on: ubuntu-latest
+    environment: dev
+    runs-on: ${{vars.RUNNER}}
     steps:
       - uses: actions/checkout@v4
         with:
