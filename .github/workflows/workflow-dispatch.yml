@@ -1,0 +1,15 @@
+name: GitHub Actions Demo
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [workflow_dispatch]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: [Test-Batumi-Runner]
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+            echo "${{github.sha}}" > foo.txt
+            git config user.name "github-actions[bot]"
+            git config user.email "test@test.com"
+            git add foo.txt
+            git commit -m "foo test commit"
+            git pusdh origin "${{ github.ref }}"
