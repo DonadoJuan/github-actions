@@ -6,10 +6,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: |
+
+      - name: test
+        env:
+            CUSTOM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
             echo "${{github.sha}}" > foo.txt
             git config user.name "github-actions[bot]"
             git config user.email "test@test.com"
+            git config user.password ${{ env.CUSTOM_TOKEN }}
             git add foo.txt
             git commit -m "foo test commit"
             git push origin "${{ github.ref }}"
